@@ -1,12 +1,13 @@
 <template>
   <div id="app">
+    <ModalNewCard />
     <div class="crud-create-button-container">
-      <b-button class="crud-create-button mr-3" variant="success">+ Add New Item</b-button>
+      <b-button v-b-modal.newTask class="crud-create-button mr-3" variant="success">+ Add New Item</b-button>
     </div>
     <div class="columns-container">
       <div class="column">
         <h3>To Do</h3>
-        <div class="d-flex flex-column-reverse px-5">
+        <div class="d-flex flex-column px-5">
           <TaskCard
             v-for="(task, i) in todo"
             :key="i"
@@ -19,7 +20,7 @@
       </div>
       <div class="column">
         <h3>In Progress</h3>
-        <div class="d-flex flex-column-reverse px-5">
+        <div class="d-flex flex-column px-5">
           <TaskCard
             v-for="(task, i) in inProgress"
             :key="i"
@@ -32,7 +33,7 @@
       </div>
       <div class="column">
         <h3>Done</h3>
-        <div class="d-flex flex-column-reverse px-5">
+        <div class="d-flex flex-column px-5">
           <TaskCard
             v-for="(task, i) in done"
             :key="i"
@@ -48,9 +49,9 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapState, mapActions} from "vuex";
 import TaskCard from "@/components/TaskCard";
-import TaskCard from "@/components/TaskCard";
+import ModalNewCard from "@/components/ModalNewCard";
 
 export default {
   name: "App",
@@ -59,11 +60,15 @@ export default {
     ...mapState(["todo", "inProgress", "done"])
   },
   components: {
-   TaskCard
+   TaskCard,
+   ModalNewCard
   },
   methods: {
-
-  }
+    ...mapActions(["initializeStore"]),
+  },
+  created(){
+    this.initializeStore();
+ }
 };
 </script>
 

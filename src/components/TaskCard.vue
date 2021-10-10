@@ -1,11 +1,12 @@
 <template>
-  <b-card no-body variant="primary" class="taskcard-body mt-2 mb-5">
-    <b-card-header class="d-flex">
+  <b-card no-body class="taskcard-body mt-2 mb-5">
+    <b-card-header :header-bg-variant="headerBG" class="d-flex">
       <button :id="id" class="button-options"></button>
       <b-popover class="card-popover" :target="id" triggers="hover" placement="top">
         <b-button-group vertical>
           <template v-if="status === 'todo'">
             <b-button
+              variant="warning"
               @click="moveTask({taskId: id,  currentStatus: status, newStatus: 'inProgress'})"
               size="sm"
             >In Progress</b-button>
@@ -13,10 +14,12 @@
           <template v-if="status === 'inProgress'">
             <b-button-group>
               <b-button
+                variant="secondary"
                 @click="moveTask({taskId: id,  currentStatus: status, newStatus: 'todo'})"
                 size="sm"
               >To Do</b-button>
               <b-button
+                variant="success"
                 @click="moveTask({taskId: id,  currentStatus: status, newStatus: 'done'})"
                 size="sm"
               >Done</b-button>
@@ -24,6 +27,7 @@
           </template>
           <template v-if="status === 'done'">
             <b-button
+              variant="warning"
               @click="moveTask({taskId: id,  currentStatus: status, newStatus: 'inProgress'})"
               size="sm"
             >In Progress</b-button>
@@ -64,13 +68,13 @@ export default {
         required: true,
       }
     },
-    computed: {
-      // cardColorVariant () {
-      //   // if(this.status === "todo") return "info";
-      //   // if(this.status === "inProgress") return "warning";
-      //   // if(this.status === "done") return "done";
-      //   return "danger"
-      // }
+    computed:{
+      headerBG () {
+        if(this.status === "todo") return "secondary";
+        if(this.status === "inProgress") return "warning";
+        if(this.status === "done") return "success";
+        return "secondary";
+      }
     },
     methods: {
       ...mapActions(["moveTask", "deleteTask"]),
