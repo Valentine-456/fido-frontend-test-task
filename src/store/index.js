@@ -36,6 +36,7 @@ export default new Vuex.Store({
         localStorage.setItem(cat, json);
       });
     },
+
     //taskCard methods
     createTask({ state, dispatch }, { title, description }) {
       if (!title || title.length > 50) return;

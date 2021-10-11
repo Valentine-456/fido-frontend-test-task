@@ -1,5 +1,5 @@
 <template>
-  <b-card no-body class="taskcard-body mt-2 mb-5">
+  <b-card no-body class="shadow taskcard-body mt-2 mb-5">
     <b-card-header :header-bg-variant="headerBG" class="d-flex">
       <button :id="id" class="button-options"></button>
       <b-popover class="card-popover" :target="id" triggers="hover" placement="top">
@@ -47,9 +47,7 @@ import {mapActions} from "vuex";
 
 export default {
     name: "TaskCard",
-    data: () => ({
-      
-    }),
+    data: () => ({}),
     props: {
       title: {
         type: String,
@@ -84,6 +82,7 @@ export default {
 <style scoped>
 .taskcard-body {
   width: calc(100% - 60px);
+  max-width: 350px;
   height: auto;
   text-align: left;
 }
@@ -93,7 +92,7 @@ export default {
   height: 25px;
   border-radius: 50%;
   border: none;
-  background: grey;
+  background: lightgrey;
   margin: auto 0 auto auto;
 }
 </style>

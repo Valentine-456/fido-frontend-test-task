@@ -18,7 +18,7 @@ npm run serve
 npm run build
 
 // builds static files that are linked to index.html though relative file system paths;
-// to see project, just open index.html in your browser.
+// to see project, just open ./dist/index.html in your browser.
 ```
 
 ### Lints and fixes files
